@@ -6,6 +6,8 @@
     <meta name="description" content="Pursuing authentic artificial intelligence through fundamental research into consciousness and intelligence.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img\शून्य (1).png" />
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -15,6 +17,7 @@
             background: #fff;
             margin: 0;
             padding: 0;
+            transition: background 0.3s, color 0.3s;
         }
 
         #maincontent {
@@ -45,7 +48,7 @@
         }
 
         a {
-            color: #0366d6;
+            color: #44789f;
             text-decoration: none;
         }
 
@@ -53,11 +56,23 @@
             text-decoration: underline;
         }
 
-     
-
         .links a {
             display: block;
             margin-bottom: 0.5em;
+        }
+
+       
+        body.dark-mode {
+            background: #0f0f0f;
+            color: #eaeaea;
+        }
+
+        body.dark-mode a {
+            color: #44789f;
+        }
+
+        body.dark-mode .mantra {
+            color: #bbb;
         }
 
         @media (max-width: 600px) {
@@ -65,9 +80,29 @@
                 margin-top: 40px;
             }
         }
+
+       
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            color: #44789f;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            color: #44789f;
+        }
     </style>
 </head>
-<body>
+<body class="dark-mode"> 
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-sun" id="dark-mode-icon"></i> 
+    </button>
     <div id="maincontent">
         <h2>Shunya Research</h2>
         <div class="mantra">
@@ -90,12 +125,10 @@
 
         <p>We are currently focused on developing novel neural architectures that move beyond the transformer paradigm, exploring revolutionary new approaches to consciousness emergence, and investigating the theoretical foundations of machine understanding.</p>
 
-
-<div class="works">
-    <p><b>Our current projects</b></p>
-    <a href="https://github.com/ShunyaResearch/BIOS-r0" target="_blank">BIOS-r0 | Proof and definition of intelligence (currently WIP)</a>
-</div>
-
+        <div class="works">
+            <p><b>Our current projects</b></p>
+            <a href="https://github.com/ShunyaResearch/BIOS-r0" target="_blank">BIOS-r0 | Proof and definition of intelligence (currently WIP)</a>
+        </div>
 
         <div class="links">
             <p><b>Links</b></p>
@@ -104,5 +137,21 @@
             <a href="https://x.com/cybereriauser" target="_blank">Updates (X, formerly twitter) →</a>
         </div>
     </div>
+
+    <script>
+        function toggleDarkMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-mode-icon');
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+    </script>
 </body>
 </html>
