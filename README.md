@@ -1,2 +1,0 @@
-# shunyaresearch.github.io
-website
