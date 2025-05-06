@@ -2,148 +2,502 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Shunya Research</title>
-    <meta name="description" content="Pursuing authentic artificial intelligence through fundamental research into consciousness and intelligence.">
+    <title>Shunya Research | Conscious AI & Neural Interfaces</title>
+    <meta name="description" content="A student-led research lab pursuing authentic artificial intelligence through fundamental research into consciousness, intelligence, and brain-computer interfaces.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img\शून्य (1).png" />
-   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.5;
-            font-size: 16px;
-            color: #1a1a1a;
-            background: #fff;
-            margin: 0;
-            padding: 0;
-            transition: background 0.3s, color 0.3s;
+        :root {
+            --primary: #44789f;
+            --text-light: #eaeaea;
+            --text-dark: #1a1a1a;
+            --bg-light: #fff;
+            --bg-dark: #0f0f0f;
+            --bg-card-light: #f9f9f9;
+            --bg-card-dark: #111111;
+            --transition: all 0.3s ease;
         }
 
-        #maincontent {
-            max-width: 650px;
-            margin: 70px auto;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            font-size: 16px;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            transition: var(--transition);
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
             padding: 0 20px;
         }
 
-        h2 {
-            font-weight: 600;
-            margin-bottom: 2px;
-            font-size: 24px;
+        /* Header styles */
+        header {
+            padding: 50px 0 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
-        .mantra {
-            margin-bottom: 30px;
-            font-style: italic;
-            color: #444;
-            font-family: 'Times New Roman', serif;
+        .logo {
+            font-weight: 700;
+            font-size: 32px;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
         }
 
-        p {
-            margin: 1em 0;
+        .dark-mode .logo {
+            color: var(--text-light);
         }
 
-        b {
-            font-weight: 600;
+        .logo span {
+            font-weight: 300;
         }
 
-        a {
-            color: #44789f;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .links a {
-            display: block;
-            margin-bottom: 0.5em;
-        }
-
-       
-        body.dark-mode {
-            background: #0f0f0f;
-            color: #eaeaea;
-        }
-
-        body.dark-mode a {
-            color: #44789f;
-        }
-
-        body.dark-mode .mantra {
-            color: #bbb;
-        }
-
-        @media (max-width: 600px) {
-            #maincontent {
-                margin-top: 40px;
-            }
-        }
-
-       
         .dark-mode-toggle {
             position: fixed;
             top: 20px;
             right: 20px;
             background: transparent;
             border: none;
-            font-size: 24px;
-            color: #44789f;
+            font-size: 22px;
+            color: var(--primary);
             cursor: pointer;
-            transition: color 0.3s;
+            z-index: 100;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
         }
 
         .dark-mode-toggle:hover {
-            color: #44789f;
+            background: rgba(68, 120, 159, 0.1);
+        }
+
+        /* Mantra section */
+        .mantra {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            color: #777;
+            text-align: left;
+            
+            font-size: 16px;
+            line-height: 1.8;
+            border-left: 2px solid var(--primary);
+            padding-left: 15px;
+        }
+
+        .dark-mode .mantra {
+            color: #bbb;
+        }
+
+        .mantra small {
+            display: block;
+            font-size: 14px;
+            margin-top: 5px;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        .dark-mode .mantra small {
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+
+        /* Main content */
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 0 0 30px;
+            color: var(--text-dark);
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+
+        .dark-mode h1 {
+            color: var(--text-light);
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 20px;
+            color: var(--text-dark);
+            letter-spacing: -0.3px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .dark-mode h2 {
+            color: var(--text-light);
+        }
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        b {
+            font-weight: 600;
+        }
+
+        /* Research areas */
+        .research-areas {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .research-card {
+            background: var(--bg-card-light);
+            border-radius: 12px;
+            padding: 25px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-color: rgba(68, 120, 159, 0.2);
+        }
+        
+        .dark-mode .research-card {
+            background: var(--bg-card-dark);
+        }
+        
+        .dark-mode .research-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .research-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        
+        .dark-mode .research-card h3 {
+            color: var(--text-light);
+        }
+        
+        .research-card i {
+            color: var(--primary);
+            font-size: 22px;
+        }
+
+        /* Projects section */
+        .projects {
+            margin: 40px 0;
+        }
+
+        .project-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .project-item:hover {
+            background: rgba(68, 120, 159, 0.05);
+        }
+
+        .dark-mode .project-item:hover {
+            background: rgba(68, 120, 159, 0.1);
+        }
+
+        .project-item i {
+            color: var(--primary);
+            min-width: 20px;
+            font-size: 18px;
+            margin-top: 2px;
+        }
+
+        /* Links section */
+        .links {
+            margin: 40px 0;
+        }
+
+        .links a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .links a:hover {
+            background: rgba(68, 120, 159, 0.05);
+            text-decoration: none;
+        }
+
+        .dark-mode .links a:hover {
+            background: rgba(68, 120, 159, 0.1);
+        }
+
+        .links a i {
+            color: var(--primary);
+            min-width: 20px;
+            font-size: 18px;
+        }
+
+        /* Support section */
+        .support {
+            margin: 40px 0;
+            background: var(--bg-card-light);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .dark-mode .support {
+            background: var(--bg-card-dark);
+        }
+
+        .support h2 {
+            margin-top: 0;
+        }
+
+        .crypto-address {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-wrap: break-word;
+            word-break: break-all;
+            padding: 10px;
+            background: rgba(68, 120, 159, 0.05);
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .dark-mode .crypto-address {
+            background: rgba(68, 120, 159, 0.1);
+        }
+
+        .crypto-address:hover {
+            background: rgba(68, 120, 159, 0.1);
+        }
+
+        .dark-mode .crypto-address:hover {
+            background: rgba(68, 120, 159, 0.15);
+        }
+
+        .crypto-address i {
+            color: var(--primary);
+            min-width: 20px;
+            font-size: 18px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 50px 0 30px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(120, 120, 120, 0.1);
+            color: #777;
+            font-size: 14px;
+        }
+
+        .dark-mode footer {
+            border-color: rgba(120, 120, 120, 0.2);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .social-links a {
+            color: var(--primary);
+            font-size: 22px;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .social-links a:hover {
+            background: rgba(68, 120, 159, 0.1);
+            text-decoration: none;
+            transform: translateY(-3px);
+        }
+
+        @media (min-width: 768px) {
+            .research-areas {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            h1 {
+                font-size: 30px;
+            }
+
+            header {
+                padding: 30px 0 20px;
+            }
         }
     </style>
 </head>
-<body class="dark-mode"> 
+<body class="dark-mode">
     <button class="dark-mode-toggle" onclick="toggleDarkMode()">
-        <i class="fas fa-sun" id="dark-mode-icon"></i> 
+        <i class="fas fa-sun" id="dark-mode-icon"></i>
     </button>
-    <div id="maincontent">
-        <h2>Shunya Research</h2>
-        <div class="mantra">
-            असतो मा सद्गमय · तमसो मा ज्योतिर्गमय · मृत्योर् मा अमृतं गमय<br>
-            <small>(Lead me from the unreal to the real, from darkness to light, from death to immortality)<br>
-                Bṛhadāraṇyaka Upaniṣad (1.3.28)</small>
-        </div>
 
-        <p><b>True consciousness is possible.</b></p>
+    <div class="container">
+        <header>
+            <div class="logo">
+                Shunya <span>Research</span>
+            </div>
+            <div class="mantra">
+                असतो मा सद्गमय · तमसो मा ज्योतिर्गमय · मृत्योर् मा अमृतं गमय
+                <small>(Lead me from the unreal to the real, from darkness to light, from death to immortality)<br>
+                    Bṛhadāraṇyaka Upaniṣad (1.3.28)</small>
+            </div>
+        </header>
 
-        <p>Today's AI systems are sophisticated pattern-matching machines, capable of remarkable feats but fundamentally lacking in genuine understanding.</p>
+        <main>
+            <h1>Pursuing Authentic Intelligence & Accessible Neural Interfaces</h1>
 
-        <p>We reject the notion that scaling current architectures will lead to consciousness. These systems, regardless of their size, remain algorithmic imitations.</p>
-
-        <p>Our mission transcends the limitations of today's AI paradigms. We're not interested in building better predictive models—we're pursuing the fundamental nature of intelligence itself.</p>
-
-        <p>Through rigorous research into cognitive architectures, environmental data fusion, and consciousness emergence, we're working to bridge the gap between statistical prediction and true understanding.</p>
-
-        <p>Our approach combines theoretical computer science, neuroscience, and philosophy of mind to develop entirely new frameworks for artificial intelligence.</p>
-
-        <p>We are currently focused on developing novel neural architectures that move beyond the transformer paradigm, exploring revolutionary new approaches to consciousness emergence, and investigating the theoretical foundations of machine understanding.</p>
-
-        <div class="works">
-            <p><b>Our current projects</b></p>
-            <a href="https://github.com/ShunyaResearch/BIOS-r0" target="_blank">BIOS-r0 | Proof and definition of intelligence (currently WIP)</a>
-        </div>
-
-        <div class="links">
-            <p><b>Links</b></p>
-            <a href="#">Research Papers → (coming soon)</a>
-            <a href="https://github.com/ShunyaResearch" target="_blank">Technical Documentation →</a>
-            <a href="https://x.com/cyb3r_17" target="_blank">Updates (X, formerly twitter) →</a>
+            <section>
+                We are a student-led research lab focused on developing systems that move beyond statistical pattern recognition toward actual machine understanding. Our work integrates theoretical computer science, computational neuroscience, and embedded systems to investigate the foundations of intelligence and build functional cognitive architectures.
+                <br>
+                <p>Current AI systems operate as high-dimensional interpolators with no real grasp of semantics or causality. At Shunya, we aim to create architectures that exhibit agency, continuity of self, and adaptive behavior through self-supervised learning, attention control, and embodied interaction.</p>
+            </section>
             
-        </div>
 
-        <div class="works">
-            <p><b>Interested in supporting us?</b></p>
-            Consider donating to our research!<br>
-            BTC: bc1qta2vkrwp42dlrfv5qfzf34tr59k902vd7xvkl7<br>
-            ETH: 0x5B04Fc2787D6e9642257BE3B8d8847075eb055E8
-        </div>
+            <h2>Our Research Branches</h2>
+            <div class="research-areas">
+                <div class="research-card">
+                    <h3><i class="fas fa-brain"></i> Conscious AI Systems</h3>
+                    <p>We're developing cognitive architectures that move beyond the transformer paradigm, exploring mechanisms for consciousness emergence, and investigating the theoretical foundations of machine understanding.</p>
+                    <p><b>Coming Soon:</b> Our first research paper on the definition of intelligence and consciousness in artifical systems, releasing for preprint by end of May 2025.</p>
+                </div>
+
+                <div class="research-card">
+                    <h3><i class="fas fa-microchip"></i> Brain-Computer Interfaces</h3>
+                    <p>Our BCI vertical aims to make brain-controlled prosthetics more affordable and accessible for people in India through home-grown hardware solutions.</p>
+                    <p>We're also developing tech-based solutions for neurodevelopmental disorders like ADHD and exploring new paths for cognitive enhancement.</p>
+                </div>
+            </div>
+
+            <section class="projects">
+                <h2>Current Projects</h2>
+                <div class="project-item">
+                    <i class="fas fa-code-branch"></i>
+                    <div>
+                        <b>BIOS-r0</b> — Proof and definition of intelligence (currently WIP)
+                    </div>
+                </div>
+                <div class="project-item">
+                    <i class="fas fa-microchip"></i>
+                    <div>
+                        <b>Neural Interface Prototype</b> — Low-cost BCI hardware for accessibility (in development)
+                    </div>
+                </div>
+            </section>
+
+            <section class="links">
+                <h2>Links</h2>
+                <a href="#" target="_blank">
+                    <i class="fas fa-file-alt"></i>
+                    Research Papers (coming soon)
+                </a>
+                <a href="https://github.com/ShunyaResearch" target="_blank">
+                    <i class="fab fa-github"></i>
+                    Technical Documentation
+                </a>
+                <a href="https://x.com/cyb3r_17" target="_blank">
+                    <i class="fab fa-x-twitter"></i>
+                    Updates & Announcements
+                </a>
+            </section>
+
+            <section class="support">
+                <h2>Interested in Supporting Us?</h2>
+                <p>Consider donating to our research initiatives:</p>
+                <div class="crypto-address">
+                    <i class="fab fa-bitcoin"></i>
+                    <span><b>BTC:</b> bc1qta2vkrwp42dlrfv5qfzf34tr59k902vd7xvkl7</span>
+                </div>
+                <div class="crypto-address">
+                    <i class="fab fa-ethereum"></i>
+                    <span><b>ETH:</b> 0x5B04Fc2787D6e9642257BE3B8d8847075eb055E8</span>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/ShunyaResearch" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/cyb3r_17" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="mailto:contact@shunyaresearch.org"><i class="fas fa-envelope"></i></a>
+                <a href="/blog.html"><i class="fa-solid fa-book"></i></a>
+            </div>
+            <p>© 2025 Shunya Research. All rights reserved.</p>
+        </footer>
     </div>
 
     <script>
