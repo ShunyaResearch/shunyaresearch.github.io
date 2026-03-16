@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Shunya Research | Papers</title>
+    <title>Shunya Research | Home</title>
     <meta name="description" content="Intelligence that will eat the world.">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="shunya-removebg-preview.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
-            @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
         :root {
             --primary: #44789f;
@@ -37,7 +36,6 @@
             transition: var(--transition);
         }
 
-        /* Dark mode styles */
         body.dark-mode {
             background: var(--bg-dark);
             color: var(--text-light);
@@ -49,11 +47,10 @@
             padding: 0 20px;
         }
 
-        /* Header styles */
         header {
             padding: 50px 0 30px;
             display: flex;
-            flex-direction: column; /* Changed to column to allow space for nav */
+            flex-direction: column;
             align-items: flex-start;
         }
         
@@ -62,7 +59,7 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            margin-bottom: 20px; /* Space between logo/nav and mantra */
+            margin-bottom: 20px;
         }
 
         .logo {
@@ -97,9 +94,8 @@
 
         .main-nav a:hover {
             text-decoration: underline;
-            color: var(--primary); /* Ensure color stays primary on hover */
+            color: var(--primary);
         }
-
 
         .dark-mode-toggle {
             position: fixed;
@@ -124,13 +120,11 @@
             background: rgba(68, 120, 159, 0.1);
         }
 
-        /* Mantra section */
         .mantra {
             font-family: 'Times New Roman', serif;
             font-style: italic;
             color: #777;
             text-align: left;
-            
             font-size: 16px;
             line-height: 1.8;
             border-left: 2px solid var(--primary);
@@ -154,7 +148,6 @@
             opacity: 0.7;
         }
 
-        /* Main content */
         h1 {
             font-size: 36px;
             font-weight: 700;
@@ -192,6 +185,17 @@
             color: var(--text-light);
         }
 
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 10px 0 5px;
+            color: var(--text-dark);
+        }
+
+        .dark-mode h4 {
+            color: var(--text-light);
+        }
+
         p {
             margin-bottom: 20px;
             line-height: 1.8;
@@ -215,13 +219,61 @@
             font-weight: 600;
         }
 
+        .theme-image {
+            width: 100%;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-image-placeholder {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--bg-card-light);
+            border: 3px solid var(--primary);
+        }
+
+        .dark-mode .team-image-placeholder {
+            background: var(--bg-card-dark);
+        }
+
+        .team-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+
+        .team-role {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .dark-mode .team-role {
+            color: #bbb;
+        }
+
         /* Research areas */
         .research-areas {
-            display: flex; /* Changed to flex for horizontal layout */
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            display: flex;
+            flex-wrap: wrap;
             gap: 25px;
             margin: 30px 0;
-            justify-content: center; /* Center cards */
         }
         
         .research-card {
@@ -230,17 +282,15 @@
             padding: 25px;
             transition: var(--transition);
             border: 1px solid transparent;
-            flex: 1 1 calc(50% - 25px); /* Flex basis for two columns, adjusting for gap */
-            min-width: 300px; /* Minimum width for cards before wrapping */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03); /* Subtle initial shadow */
+            flex: 1 1 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Pushes content to top and bottom */
         }
         
         .research-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* More pronounced shadow on hover */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             border-color: rgba(68, 120, 159, 0.3);
         }
         
@@ -257,10 +307,10 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 22px; /* Slightly larger heading */
+            font-size: 22px;
             margin-bottom: 15px;
             color: var(--text-dark);
-            border-bottom: 1px solid rgba(68, 120, 159, 0.2); /* Separator */
+            border-bottom: 1px solid rgba(68, 120, 159, 0.2);
             padding-bottom: 10px;
         }
         
@@ -270,50 +320,15 @@
         
         .research-card i {
             color: var(--primary);
-            font-size: 26px; /* Larger icon */
+            font-size: 26px;
         }
 
         .research-card p {
-            margin-bottom: 15px; /* Adjust paragraph spacing within card */
+            margin-bottom: 15px;
         }
 
         .research-card p:last-of-type {
-            margin-bottom: 0; /* Remove margin from last paragraph in card */
-        }
-
-        /* Projects section */
-        .projects {
-            margin: 40px 0;
-        }
-
-        .project-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-
-        .project-item:hover {
-            background: rgba(68, 120, 159, 0.05);
-        }
-
-        .dark-mode .project-item:hover {
-            background: rgba(68, 120, 159, 0.1);
-        }
-
-        .project-item i {
-            color: var(--primary);
-            min-width: 20px;
-            font-size: 18px;
-            margin-top: 2px;
-        }
-
-        /* Links section - This section is now moved to the header */
-        .links {
-            display: none; /* Hide the old links section */
+            margin-bottom: 0;
         }
 
         /* Support section */
@@ -428,9 +443,8 @@
                 gap: 10px;
             }
 
-            .research-card {
-                flex: 1 1 100%; /* Full width on smaller screens */
-                min-width: unset; /* Remove min-width restriction */
+            .team-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -447,7 +461,7 @@
                     Shunya <span>Research</span>
                 </div>
                 <nav class="main-nav">
-                    <a href="papers.html" target="_blank">
+                    <a href="/papers.html">
                         <i class="fas fa-file-alt"></i> papers
                     </a>
                     <a href="https://github.com/ShunyaResearch" target="_blank">
@@ -456,7 +470,7 @@
                     <a href="https://x.com/shunyaresearch" target="_blank">
                         <i class="fab fa-x-twitter"></i> updates
                     </a>
-                      <a href="https://substack.com/@shunyaresearch" target="_blank">
+                    <a href="https://substack.com/@shunyaresearch" target="_blank">
                         <i class="fa-solid fa-book"></i> blog
                     </a>
                 </nav>
@@ -469,58 +483,26 @@
         </header>
 
         <main>
-            <h1>
-Intelligence that will eat the world.
-</h1>
-<img id="theme-image" style="width: 100%;" src="shunya1.png">
-<section>
-  <h2>Papers:</h2>
-  <ul>
-    <li>
-     Work in progress!
-    </li>
-  </ul>
-</section>
-
+            <h1>Intelligence that will eat the world.</h1>
+            <img id="theme-image" class="theme-image" src="shunya1.png" alt="Shunya Research">
+            
+            <section>
+                <li>
+                    <ul><a href="papers/llm_hallucination.pdf">On the Structural Inevitability of LLM Hallucinations</a></ul>
+                </li>
+          </section>
 
  
-     
-            <section class="links" style="display: none;">
-                <h2>Links</h2>
-                <a href="#" target="_blank">
-                    <i class="fas fa-file-alt"></i>
-                    Research Papers (coming soon)
-                </a>
-                <a href="https://github.com/ShunyaResearch" target="_blank">
-                    <i class="fab fa-github"></i>
-                    Technical Documentation
-                </a>
-                <a href="https://x.com/cyb3r_17" target="_blank">
-                    <i class="fab fa-x-twitter"></i>
-                    Updates & Announcements
-                </a>
-            </section>
 
-            <section class="support">
-                <h2>Interested in Supporting Us?</h2>
-                <p>Consider donating to our research initiatives:</p>
-                <div class="crypto-address">
-                    <i class="fab fa-bitcoin"></i>
-                    <span><b>BTC:</b> bc1qta2vkrwp42dlrfv5qfzf34tr59k902vd7xvkl7</span>
-                </div>
-                <div class="crypto-address">
-                    <i class="fab fa-ethereum"></i>
-                    <span><b>ETH:</b> 0x5B04Fc2787D6e9642257BE3B8d8847075eb055E8</span>
-                </div>
-            </section>
+   
+
         </main>
 
         <footer>
             <div class="social-links">
-                      <a href="mailto:shunyaresearch.labs@gmail.coms"><i class="fas fa-envelo"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.youtube.com/@shunyaresearch" target="_blank"><i class="fab fa-youtube"></i></a>
-
-                <a href="https://substack.com/@shunyaresearch"><i class="fa-solid fa-book"></i></a>
+                <a href="mailto:shunyaresearch.labs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.youtube.com/@shunyaresearch" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://substack.com/@shunyaresearch" target="_blank" aria-label="Substack"><i class="fa-solid fa-book"></i></a>
             </div>
             <p>© 2025 Shunya Research. All rights reserved.</p>
         </footer>
@@ -529,10 +511,8 @@ Intelligence that will eat the world.
     <script>
         function updateThemeImage(isDarkMode) {
             const themeImage = document.getElementById('theme-image');
-            if (isDarkMode) {
-                themeImage.src = 'shunya1.png';
-            } else {
-                themeImage.src = 'shunya21.png';
+            if (themeImage) {
+                themeImage.src = isDarkMode ? 'shunya1.png' : 'shunya21.png';
             }
         }
 
@@ -544,9 +524,7 @@ Intelligence that will eat the world.
             const isDarkMode = body.classList.contains('dark-mode');
             updateThemeImage(isDarkMode);
 
-            // Save user preference
             if (isDarkMode) {
-                // Store theme preference (but not using localStorage due to artifact restrictions)
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
             } else {
@@ -555,7 +533,6 @@ Intelligence that will eat the world.
             }
         }
 
-        // Apply theme on page load
         document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
             const icon = document.getElementById('dark-mode-icon');
