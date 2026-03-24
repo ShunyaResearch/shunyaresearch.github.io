@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Shunya Research | Papers</title>
+    <title>Shunya Research | The Cybernetics Archive</title>
     <meta name="description" content="Intelligence that will eat the world.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="shunya-removebg-preview.png" />
@@ -226,6 +226,19 @@
         }
 
         /* Team Section */
+        blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .dark-mode blockquote {
+            color: #aaa;
+        }
+
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -470,7 +483,7 @@
                     <a href="https://x.com/shunyaresearch" target="_blank">
                         <i class="fab fa-x-twitter"></i> updates
                     </a>
-                    <a href="/blogs.html" target="_blank">
+                    <a href="https://substack.com/@shunyaresearch" target="_blank">
                         <i class="fa-solid fa-book"></i> blog
                     </a>
                 </nav>
@@ -483,16 +496,35 @@
         </header>
 
         <main>
-            <h1>Intelligence that will eat the world.</h1>
-            <img id="theme-image" class="theme-image" src="shunya1.png" alt="Shunya Research">
-            
-            <section>
-                <li>
-                    <ul><a href="papers/llm_hallucination.pdf">On the Structural Inevitability of LLM Hallucinations</a></ul>
-                </li>
-          </section>
+            <h1>The Cybernetics Archive</h1>
+          
+        <section>
+                 
 
- 
+             <blockquote cite="https://dn720006.ca.archive.org/0/items/pekelis-cybernetics-a-z-mir-1974/Pekelis%20-%20Cybernetics%20A-Z%20-%20Mir%20-%201974.pdf">
+It's up to you, young men, not just to master this sophisticated technology but to design and build new, even more advanced machines, develop the science which governs them, dig into unknown strata of cybernetic knowledge.
+Many are the wonderful and interesting exploits that await you. But they'll need a lot of knowledge and skill. And to attain knowledge and skill one should study long and hard.
+I would like to remind you of the words of V. I. Lenin: "Study, study and study!"
+Wide and deep is their meaning: you should not only study, but should always be "on the level" of advanced knowledge, be abreast of the time, see far ahead of you.
+Only the competent are able to master science. If you want to rule over clever machines, to build electronic robots, to blaze new trails in cybernetics you should study the fundamentals of the science of cybernetics, should take hold of the treasures of knowledge collected for you by men of former generations, by your fathers and grandfathers.<br>
+ - V. PEKELIS, Cybernetics A-to-Z
+</blockquote>
+
+        </section>
+
+ <section>
+   The term cybernetics was first used by the Greeks as "κυβερνήτης (kybernḗtēs)" referring to the person who steers a ship, an early form of a closed control loop.<br><br>
+The metaphor held for centuries, dormant in navigation and mechanics, until Norbert Wiener formalized it in 1948. Cybernetics became the science of control and communication in animals and machines. It was not a narrow discipline by design. Wiener, Ashby, McCulloch and von Foerster were circling one large question: how does any system regulate itself against a world that constantly pushes back?
+The answers seeded most of modern engineering. Control theory gave us autopilots, power grids and industrial automation. Shannon's information theory grew from the same conversations. Neuroscience borrowed the feedback loop. The early internet was cybernetic in spirit, a self-correcting network built to route around damage.<br><br>
+By the time AI research consolidated around scaling and connectionism, cybernetics had been quietly absorbed into subfields that lost the thread between them. What remained was treated as historical background, not active framework.
+The consequences are visible. Modern deep learning is essentially an open loop. You train, you deploy. The model does not inhabit a world or receive feedback from one in any meaningful sense. Systems that are extraordinarily capable at pattern completion but brittle and ungrounded when reality pushes back. That is not a hardware problem or an architecture problem. It is what happens when you build without the right frame.
+<br><br>
+At Shunya Research we think the path runs back through this. Not as nostalgia but because the questions Wiener was asking are still the correct ones and almost nobody in mainstream AI is seriously asking them. We are releasing an open archive of cybernetics literature, Soviet and American traditions both, because we believe you cannot build what you do not understand. The science of steering has been waiting. It is time to pick it back up.
+
+<br><br><center>
+<a href="https://github.com/ShunyaResearch/TheCyberneticsArchive">The Cybernetics Archive</a>
+</center>
+</section>
 
    
 
@@ -537,7 +569,7 @@
             const body = document.body;
             const icon = document.getElementById('dark-mode-icon');
             const isDarkMode = body.classList.contains('dark-mode');
-            
+
             updateThemeImage(isDarkMode);
 
             if (isDarkMode) {

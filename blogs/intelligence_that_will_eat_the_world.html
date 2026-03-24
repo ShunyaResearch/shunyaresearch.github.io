@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Shunya Research | Papers</title>
+    <title>Shunya Research | The Cybernetics Archive</title>
     <meta name="description" content="Intelligence that will eat the world.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="shunya-removebg-preview.png" />
@@ -226,6 +226,19 @@
         }
 
         /* Team Section */
+        blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .dark-mode blockquote {
+            color: #aaa;
+        }
+
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -484,15 +497,98 @@
 
         <main>
             <h1>Intelligence that will eat the world.</h1>
-            <img id="theme-image" class="theme-image" src="shunya1.png" alt="Shunya Research">
-            
-            <section>
-                <li>
-                    <ul><a href="papers/llm_hallucination.pdf">On the Structural Inevitability of LLM Hallucinations</a></ul>
-                </li>
-          </section>
+          
+        <section>
+                 <img id="theme-image" class="theme-image" src="shunya1.png" alt="Shunya Research">
 
- 
+             <blockquote cite="/index.html">
+“It is dangerous to be right in matters where established men are wrong.”<br>- Voltaire</blockquote>
+
+        </section>
+
+ <section>
+            <h3>The emperor has no mind.</h3>
+
+            <p>It is the 23rd of December, 2025. Large language models have been trained on almost everything there is to read, watch, or hear. In many ways, they are humanity's third attempt at omniscience, after the library, and then the internet.</p>
+
+            <p>We now have models like Opus 4.5, Gemini 3 Pro/Flash, and GPT-5.2, all taking their shots at various "AGI" benchmarks. Accuracy is up. Software development abilities are better than ever. Agentic systems can plan, execute, and iterate across long horizons. On paper, the trajectory looks undeniable.</p>
+
+            <p>And yet, something vital is missing.</p>
+
+            <p>These models can solve International Mathematical Olympiad problems, synthesize research papers, and write non-trivial software systems. At the same time, they routinely fail on edge cases that a ten-year-old would resolve without hesitation, simply by applying common sense.</p>
+
+            <p>Which raises an uncomfortable question for anyone watching this grand scaling experiment unfold: is scaling actually working at all?</p>
+
+            <p>On the surface, the answer seems obvious. Models have improved, visibly and measurably. We went from systems in 2024 that could not reliably count the number of "r"s in the word strawberry, a failure often dismissed as an artifact of byte-pair encoding, to systems in 2025 that still struggle with similarly trivial lexical tasks. The particulars change, the failure mode persists.</p>
+
+            <p>At the same time, these very models have posted dramatic gains on formal benchmarks. Performance on ARC-AGI has jumped. Records have been broken. In at least one case, a long-standing open Erdős problem was proved by a language model. The contradiction is hard to ignore. As capability on abstract, formal tasks accelerates, robustness on simple, grounded ones remains brittle. Scaling appears to buy us more of certain kinds of intelligence, while leaving others almost untouched.</p>
+
+            <p>The apparent contradiction disappears once we look closely at what scaling actually optimizes for. Large language models are trained to minimize prediction error over vast corpora of text. Given enough data and parameters, this objective produces systems that are extraordinarily competent at reproducing the statistical structure of human knowledge. Formal reasoning, symbolic manipulation, and pattern completion are all well represented in text, and scale amplifies these capabilities predictably.</p>
+
+            <h4>Common sense is different.</h4>
+
+            <p>What we call "common sense" is not a collection of facts or rules that appear frequently in language. It is a compressed model of how the world behaves, built from years of embodied interaction and evolutionary priors. Objects persist when occluded. Causes precede effects. Actions have irreversible consequences. These regularities are learned not by reading about the world, but by acting in it and being constrained by it.</p>
+
+            <p>We believe language captures the results of this process, not the process itself. As a consequence, scaling language models improves their ability to mirror human explanations of the world without necessarily improving their internal models of the world those explanations refer to. The system learns to say the right thing far more reliably than it learns to know why it is right.</p>
+
+            <p>This is why progress appears lopsided. Abstract benchmarks reward the manipulation of symbols under explicit rules, a regime where statistical learning excels. Simple, grounded tasks often rely on implicit assumptions that are never stated, because humans do not need to state them. When those assumptions are missing, the model has nothing to fall back on but pattern matching, and pattern matching breaks in precisely the places where humans rely on experience.</p>
+
+            <p>From this perspective, scaling is not failing. It is succeeding exactly as designed. The mistake is assuming that the abilities it amplifies are the ones required for robust understanding of the physical and social world.</p>
+
+            <h4>When interaction still mattered</h4>
+
+            <p>The early pioneers of embodied AI (at DeepMind under Demis Hassabis) understood what the word "general" meant in Artificial General Intelligence. This philosophy led to a sequence of increasingly general agents. The Atari generalist agent demonstrated that a single model could learn to play dozens of games from pixels alone. AlphaZero showed that the same learning algorithm could master entirely different board games without domain-specific tuning. AlphaStar extended this paradigm into the real-time, partially observable, multi-agent setting of StarCraft II. Each step pushed toward agents that learned through interaction, not supervision, and whose competence emerged from acting within an environment rather than describing it.</p>
+
+            <p>At the time, this trajectory appeared promising. If general policies could be learned in simulated worlds, then, in principle, the same paradigm could extend to robotics through simulation-to-reality transfer. The bottleneck was a practical one: simulation fidelity, data efficiency, and compute.</p>
+
+            <p>The rise of large language models changed the field's incentives. Language models delivered immediate, visible progress across a wide range of benchmarks and products. Due to this, research effort shifted toward scaling transformers trained on static datasets. DeepMind, like much of the field, redirected focus to remain competitive in the language model arms race.</p>
+
+            <p>Attempts were made to bridge the gap. Transformer architectures were adapted into vision-language-action models to introduce sequence-to-sequence reasoning into domains requiring perception and action. Despite advances such as asynchronous architectures and improved sensory encodings, these systems remained fundamentally limited. Without tight feedback loops, agents lacked real-time grounding in their environments. Perception lagged action, and action lagged consequence.</p>
+
+            <p>Recent work suggests the idea itself was not flawed. Projects such as SIMA 2, GENIE 2, and NVIDIA's NitroGen revisit the notion of learning world models through interaction, often using video as a proxy for experience. These approaches move beyond static prediction toward learning dynamics, causality, and counterfactual structure.</p>
+
+            <p>Our own work follows a similar path. We begin with generalist agents in video game environments, where interaction is cheap and consequences are explicit. From there, we explore simulation-to-reality transfer, not as a final goal, but as a test of whether robust world models and emergent behavior can arise when agents are forced to act, fail, and adapt.</p>
+
+            <h4>What we're betting on</h4>
+
+            <p>At Shunya Research, we believe embodiment is not a feature of intelligence. It is the foundation.</p>
+
+            <p>If one of our models achieves the practical competence of a house cat (navigating unfamiliar spaces, understanding object permanence, learning from physical consequence), we would consider it a more significant milestone than any benchmark score.</p>
+
+            <p>Language is a subset of intelligence, not its defining characteristic. Octopi, crows, and wolves demonstrate sophisticated reasoning, planning, and learning without uttering a word. If we solve embodied general intelligence, language will emerge naturally as another modality for interaction, not as the architecture itself.</p>
+
+            <p>Our approach is twofold. First, we train world models that learn the causal structure of environments through interaction, not description. Second, we build reinforcement learning agents that use these world models to reason, plan, and adapt without hardcoded reward functions or hand-tuned hyperparameters. The agent learns what matters by experiencing what breaks.</p>
+
+            <p>This isn't a rejection of language models. It is a recognition that language alone is insufficient. The path to general intelligence lies in the physical world, where actions have learnable consequences.</p>
+
+            <h4>What gets built along the way</h4>
+
+            <p>The path to general intelligence is not a straight line to a single destination. It produces tools that matter long before the final goal is reached.</p>
+
+            <p>AlphaFold solved protein structure prediction, a problem that had occupied researchers for half a century. It has accelerated drug discovery and deepened our understanding of molecular biology. Yet it contributes nothing to Gemini's ability to chat with users. The value was orthogonal to the product roadmap.</p>
+
+            <p>This is the pattern we expect to see repeated. World models trained to understand physical causality could revolutionize weather prediction, moving beyond statistical pattern matching to genuine simulation of atmospheric dynamics. Agents that learn robust policies through interaction could transform materials science, exploring chemical spaces too vast for human intuition or brute force search.</p>
+
+            <p>Cancer research does not need embodied agents or world models. It needs the right inductive biases, the right architectures, applied to the right problems. A well-designed CNN analyzing medical imaging can save lives today. The mistake is assuming that every advance must feed into a single consumer-facing product, or that the only measure of success is engagement metrics. The labs optimizing for quarterly results are building horizontal tools that do everything adequately. We are interested in vertical breakthroughs that do one thing impossibly well, even if that thing has no obvious market. Science advances through depth, not breadth.</p>
+
+            <p>If we succeed at building genuinely intelligent systems, the applications will follow. If we fail, the tools we build along the way will still matter. Either outcome is preferable to spending a decade refining autocomplete.</p>
+
+            <h4>Beyond AGI</h4>
+
+            <p>Most AI research today operates within tight constraints: product timelines, revenue targets, user engagement metrics. These are legitimate pressures. Products fund research, and useful tools have real value.</p>
+
+            <p>But the greatest scientific breakthroughs rarely emerge from optimizing quarterly roadmaps. They come from people willing to spend years chasing questions that have no clear application, no obvious market, no guarantee of success.</p>
+
+            <p>At Shunya Research, we want to understand intelligence and the nature of reality itself. We aren't sure if we'll succeed, but then again, no one would remember Icarus if he never tried.</p>
+
+            <p>What would success look like, divorced from market capitalization and product launches? Agents that genuinely understand causality, not just correlation. Systems that learn the way children do, through exploration and consequence, building internal models of the world that are robust and transferable. Intelligence that doesn't need to be retrained from scratch for every new domain, because it has learned to learn.</p>
+
+            <p>If AGI research were freed from quarterly pressures, we would ask different questions entirely. What is the minimal structure required for general reasoning to emerge? What are we fundamentally missing? We would have the patience to explore approaches that might fail, to wait years for results that matter.</p>
+
+            <p>The next generation inherits whatever we choose to build. We choose to build genuine understanding, even if the path is uncertain. In the end, we are here to build intelligence that eats the world.</p>
+
+            <p>The question is whether we can afford not to try.</p>
+        </section>
 
    
 
@@ -537,7 +633,7 @@
             const body = document.body;
             const icon = document.getElementById('dark-mode-icon');
             const isDarkMode = body.classList.contains('dark-mode');
-            
+
             updateThemeImage(isDarkMode);
 
             if (isDarkMode) {
