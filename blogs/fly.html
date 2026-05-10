@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shunya Research | What is it like to be a fly?</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="shunya-removebg-preview.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        main p {
+            text-align: justify;
+        }
+        pre code {
+            display: block;
+            background: rgba(68, 120, 159, 0.08);
+            border-left: 3px solid var(--primary);
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        .dark-mode pre code {
+            background: rgba(68, 120, 159, 0.15);
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-sun" id="dark-mode-icon"></i>
+    </button>
+
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <div class="logo">
+                    Shunya <span>Research</span>
+                </div>
+                <nav class="main-nav">
+                    <a href="/papers.html">
+                        <i class="fas fa-file-alt"></i> papers
+                    </a>
+                    <a href="https://github.com/ShunyaResearch" target="_blank">
+                        <i class="fab fa-github"></i> code
+                    </a>
+                    <a href="https://x.com/shunyaresearch" target="_blank">
+                        <i class="fab fa-x-twitter"></i> updates
+                    </a>
+                    <a href="https://substack.com/@shunyaresearch" target="_blank">
+                        <i class="fa-solid fa-book"></i> blog
+                    </a>
+                </nav>
+            </div>
+            <div class="mantra">
+                असतो मा सद्गमय · तमसो मा ज्योतिर्गमय · मृत्योर् मा अमृतं गमय
+                <small>(Lead me from the unreal to the real, from darkness to light, from death to immortality)<br>
+                    Bṛhadāraṇyaka Upaniṣad (1.3.28)</small>
+            </div>
+        </header>
+
+        <main>
+            <h1>What is it like to be a fly?</h1>
+
+            <img class="theme-image" id="theme-image" src="fly.png" alt="fly">
+
+            <p>A question that Nagel asked (in the context of a bat) and came to the conclusion that qualia of one being cannot be "experienced" by another. Whether this is a failure of our current framework or an inherent property of qualia itself, he couldn't say. And to be fair, it seems more like an engineering problem than an ontological one. We can't experience what a fly experiences, however, we can map the physical substrate that produces that experience. Perhaps the study of the underlying substrate might lead to some understanding of qualia and bridge the gap between observations of experience and experience in itself.</p>
+
+            <p>With this assumption in mind, we did some literature review and came across many projects and ideas that solve and discuss a similar problem. Most of what we found were either dead projects that attempt studying full brain simulations by mapping every neuron + synapse of smaller organisms and then observing emergent behaviour in a simulated environment, brain-in-a-vat-esque thought experiments and a lot of philosophers who attempt to be rigorous but end up going around in circles with definitions.</p>
+
+            <p>The most promising project with an active community was <a href="https://neuromechfly.org/">"NeuroMechFly"</a>, a digital twin of the adult fruit fly <i>Drosophila melanogaster</i>. It gave us a physics-grounded body with working olfactory sensors, proprioception, and a modular brain interface.</p>
+
+            <p>This is relevant here because we wanted to start with something basic. Flies are probably the least interesting creatures philosophically, with debates about whether they are conscious or not — we use flies here because it's tractable. There has been a significant amount of study done on the brain of the fruit fly, which has compounded and led to the mapping of the entire fly brain connectome. Read more <a href="https://www.nature.com/articles/s41586-024-07558-y.pdf">here</a> and <a href="https://elifesciences.org/articles/57443v2">here</a>.</p>
+
+            <p>The fruit fly brain has been mapped at synaptic resolution. For our experiment we used the Janelia hemibrain v1.2.1, which covers the central brain reconstructed via electron microscopy at 8nm resolution. This gave us the raw connectivity data we needed to wire up a biologically grounded brain controller, which we'll get into shortly. In the NeuroMechFly paper they mention that "connectome and physiology-constrained olfactory system models" are future work — this provides an obvious direction for our experiment, i.e. writing a physiology grounded simulation for the flies.</p>
+
+            <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px; flex-wrap: wrap; margin: 30px 0;">
+                <div style="text-align: center;">
+                    <img src="connectome.png" style="width: 250px; margin-bottom: 10px;">
+                    <p style="margin:0;">The Drosophila Connectome</p>
+                </div>
+                <div style="text-align: center;">
+                    <img src="MB.png" style="width: 250px; margin-bottom: 10px;">
+                    <p style="margin:0; text-align: center;">The Mushroom Body</p>
+                </div>
+            </div>
+
+            <p>We took the synaptic weight matrix of the mushroom body, a region of the fly brain responsible for associative learning and memory, from the hemibrain dataset. The mushroom body works roughly like this: Kenyon Cells (KCs) are the main neurons that receive odor information and encode it as a sparse pattern of activity. They project onto Mushroom Body Output Neurons (MBONs), which drive approach or avoidance behaviour depending on which ones are active. The weights between KCs and MBONs are what get modified during learning. From the hemibrain we pulled a matrix of 1,927 KCs projecting onto 71 MBONs, with every synapse counted under electron microscopy.</p>
+
+            <p>The learning is gated by a third population, the Dopaminergic Neurons (DANs). Two clusters are relevant here: PPL1 neurons signal aversive events and PAM neurons signal appetitive ones. During conditioning, a KC has to both fire during odor presentation and receive strong dopaminergic input to undergo any weight change. This constraint falls directly out of the real DAN->KC connectivity in the dataset. PPL1 activity depresses the KC->MBON connections that drive approach, weakening the attractive signal for that odor. PAM activity does the opposite, potentiating them.</p>
+
+            <p>The synaptic weight matrix encodes a little more than connectivity — after conditioning, it encodes memory. The concept of an engram, first proposed by Richard Semon in 1904 and later operationalised by Karl Lashley's search for the physical substrate of memory, refers to the physical trace that a learned experience leaves in the nervous system. For a long time this remained a theoretical construct, but modern connectomics gives us something concrete: a weight matrix where specific synapses have been depressed or potentiated by a conditioning protocol. The conditioned weight matrix is the engram, expressed as a pattern of synaptic weights across the mushroom body.</p>
+
+
+             <p>To compute which KCs fire for a given odor, we used the <a href="https://neuro.uni-konstanz.de/DoOR/default.html">DoOR database</a> (Database of Odorant Responses), which contains electrophysiological measurements of 78 Drosophila olfactory receptor types across 693 chemicals. Each receptor type projects to exactly one glomerulus in the antennal lobe, and each glomerulus is served by one class of projection neuron. We mapped receptors to glomeruli using Couto et al. 2005, computed PN activation from the receptor responses, and multiplied through the real PN→KC connectivity matrix from the hemibrain. The result is a sparse binary vector — roughly 97 out of 1,927 KCs fire for any given odor, with the specific subset determined entirely by receptor biology and real connectome wiring. No parameters were tuned. The simulation knows what ethyl acetate smells like to a fly because the fly's actual olfactory hardware tells it.
+
+The mapping from simulated odor concentration to KC activation is our own construction, the olfactory pipeline is biologically grounded but not independently validated against in vivo calcium imaging data. Validating this interface against real electrophysiology is a next step before we can treat this as a unified platform rather than a proof of concept.</p>
+
+            <p>We built three versions of this "engram": naive, aversively conditioned on ethyl acetate via PPL1, and appetitively conditioned via PAM, each run for 12 trials. We then plugged each into a simulated fly body in NeuroMechFly v2 and placed all three in the same arena with a single ethyl acetate source. The only difference between the three flies was the weight matrix.</p>
+
+
+
+
+            <p>All three flies reached the source. The net valence for each condition was computed as:</p>
+
+<pre><code>valence = (kc_pattern @ W)[approach_idx].sum() - (kc_pattern @ W)[avoidance_idx].sum()</code></pre>
+
+            <p>giving roughly 5,000 for PPL1, 6,980 for naive, and 10,193 for PAM. The naive fly approached with moderate consistency, the PPL1-conditioned fly showed more lateral deviation and a longer path, and the PAM-conditioned fly took the most direct route.</p>
+
+        <p> The connectome only enters the controller as the gain on the steering signal:</p>
+
+<pre><code>gain = clip(net / 100, -500, 500)</code></pre>
+
+
+<p>where <code>net</code> is the approach minus avoidance MBON drive computed at every timestep. For our three conditions this gives gain = 50 (PPL1), 70 (naive), and 102 (PAM). Higher valence means stronger gain, which means the fly steers more decisively for any given antenna asymmetry.</p>
+
+<p>The lateral steering bias is then:</p>
+
+<pre><code>bias = gain * delta
+bias_norm = tanh(bias²) * sign(bias)</code></pre>
+
+<p>where <code>delta</code> is the normalised left-right antenna asymmetry, <code>(L - R) / mean</code>. The square is inside the tanh — small biases get suppressed quadratically before the tanh, while large biases saturate near ±1 with the original sign restored. This produces a sharp threshold: the fly only commits to a steering correction when the asymmetry crosses a noise floor, otherwise it walks roughly straight.</p>
+
+<p>A higher gain lowers the threshold at which the squared term escapes suppression — the PAM fly with gain=102 commits to corrections at smaller values of delta than the PPL1 fly with gain=50. The PAM fly detects and corrects heading drift earlier and more consistently against the CPG noise injected at every timestep. The PPL1 fly, with weaker gain, lets more drift accumulate before responding, which manifests as more lateral deviation in the trajectory.</p>
+
+<p>The final action passed to the body is:</p>
+
+<pre><code>action = [1 - bias_norm, 1 + bias_norm] * 0.4</code></pre>
+
+<p>which sets the left and right leg drives. When <code>bias_norm</code> is near zero the fly walks straight; positive values turn it right, negative values turn it left.</p>
+          <p>This can be visualised using the following graph:</p>
+          <div style="text-align: center;">
+            <img src="graph.jpeg" style="width: 100%; border-radius: 4px; margin-bottom: 10px;">
+            <p style="margin:0; text-align: center;">Navigation trajectories of naive, PPL1-conditioned, and PAM-conditioned flies</p>
+            <br>
+          </div>
+
+            <p>The trajectories can also be visualised using the videos we got from NeuroMechFly:
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 10px; margin: 30px 0;">
+                <video controls style="width: 100%; border-radius: 4px; grid-column: 1;">
+                    <source src="green.mp4" type="video/mp4">
+                </video>
+                <video controls style="width: 100%; border-radius: 4px; grid-column: 2;">
+                    <source src="blue.mp4" type="video/mp4">
+                </video>
+                <video controls style="width: 100%; border-radius: 4px; grid-column: 1 / span 2;">
+                    <source src="naive.mp4" type="video/mp4">
+                </video>
+           
+            </div>
+
+
+            <p>Some limitations of our experiments are that it uses the hemibrain (specifically the mushroom body) and not the complete fly-brain connectome. There are experiments which use the complete connectome data such as <a href="https://www.nature.com/articles/s41586-024-07763-9">this one</a>. The model also lacks spike timing dynamics, neuromodulatory inputs from other brain regions, and any external physiological factors that gate learning in vivo. These are acceptable for the current scope because of the scale of our experiments, however the eventual goal is to be able to simulate entire lifespans of these flies with the complete brain connectome.</p>
+
+
+
+           <p>Nagel's question — what is it like to be a bat, or a fly — is framed as unanswerable. And in the phenomenological sense it probably still is. But we can now ask more precise versions of it. What does the weight matrix look like before and after a fly learns something? What is the minimum set of synaptic changes that constitutes a memory? If you copy those changes into a different circuit, does the memory survive? These are engineering questions now, not philosophical ones. We can't feel what the fly feels. But we can watch its behaviour change when we modify the physical substrate that produces it, trace exactly which synapses changed and by how much, and ask what that delta means for how the fly navigates its world. </p>
+<p></p>
+<p>This experiment is one step in a longer project. The eventual goal is a platform where the same pipeline consisting of connectome data, biologically grounded plasticity and embodied simulation can be applied to organisms of increasing complexity. <i>C. elegans</i> has 302 neurons and a fully mapped connectome. <i>Drosophila</i> has 139,000. Zebrafish sits at around 100,000 with partial connectome coverage. Rodents and humans are further out, but connectomics is moving fast. The platform would let researchers run conditioning experiments, test hypotheses about memory and learning, and observe emergent behaviour across species without the constraints of wet lab work. </p>
+    
+    <p>We are starting with the fly mushroom body because it is tractable and well-characterised. But the question driving the work is not about flies it's more about whether the physical substrate of experience can be studied systematically — whether the gap Nagel identified between third-person observation and first-person experience can be narrowed, even if never fully closed, by understanding the mechanics of the substrate that produces it.</p>
+           
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="mailto:shunyaresearch.labs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.youtube.com/@shunyaresearch" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="/blogs.html" target="_blank" aria-label="Substack"><i class="fa-solid fa-book"></i></a>
+            </div>
+            <p>© 2026 Shunya Research. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function updateThemeImage(isDarkMode) {
+            const themeImage = document.getElementById('theme-image');
+            if (themeImage) {
+                themeImage.src = isDarkMode ? 'fly.png' : 'fly2.png';
+            }
+        }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-mode-icon');
+            body.classList.toggle('dark-mode');
+
+            const isDarkMode = body.classList.contains('dark-mode');
+            updateThemeImage(isDarkMode);
+
+            if (isDarkMode) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const icon = document.getElementById('dark-mode-icon');
+            const isDarkMode = body.classList.contains('dark-mode');
+
+            updateThemeImage(isDarkMode);
+
+            if (isDarkMode) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>
