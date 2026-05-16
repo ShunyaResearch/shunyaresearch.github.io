@@ -129,7 +129,7 @@ bias_norm = tanh(bias²) * sign(bias)</code></pre>
 
 <pre><code>action = [1 - bias_norm, 1 + bias_norm] * 0.4</code></pre>
 
-<p>which sets the left and right leg drives. When <code>bias_norm</code> is near zero the fly walks straight; positive values turn it right, negative values turn it left.</p>
+<p>which sets the left and right leg drives. When <code>bias_norm</code> is near zero the fly walks straight; When bias_norm is near zero the fly walks straight; the sign of bias_norm sets the turn direction.</p>
           <p>This can be visualised using the following graph:</p>
           <div style="text-align: center;">
             <img src="graph.jpeg" style="width: 100%; border-radius: 4px; margin-bottom: 10px;">
