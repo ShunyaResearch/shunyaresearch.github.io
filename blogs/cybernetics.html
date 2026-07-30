@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shunya Research | The Cybernetics Archive</title>
+    <meta name="description" content="Intelligence that will eat the world.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="shunya-removebg-preview.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="dark-mode">
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-sun" id="dark-mode-icon"></i>
+    </button>
+
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <div class="logo">
+                    Shunya <span>Research</span>
+                </div>
+                <nav class="main-nav">
+                    <a href="../papers.html">
+                        <i class="fas fa-file-alt"></i> papers
+                    </a>
+                    <a href="https://github.com/ShunyaResearch" target="_blank">
+                        <i class="fab fa-github"></i> code
+                    </a>
+                    <a href="https://x.com/shunyaresearch" target="_blank">
+                        <i class="fab fa-x-twitter"></i> updates
+                    </a>
+                    <a href="https://substack.com/@shunyaresearch" target="_blank">
+                        <i class="fa-solid fa-book"></i> blog
+                    </a>
+                </nav>
+            </div>
+            <div class="mantra">
+                असतो मा सद्गमय · तमसो मा ज्योतिर्गमय · मृत्योर् मा अमृतं गमय
+                <small>(Lead me from the unreal to the real, from darkness to light, from death to immortality)<br>
+                    Bṛhadāraṇyaka Upaniṣad (1.3.28)</small>
+            </div>
+        </header>
+
+        <main>
+            <h1>The Cybernetics Archive</h1>
+          
+        <section>
+                 
+
+             <blockquote cite="https://dn720006.ca.archive.org/0/items/pekelis-cybernetics-a-z-mir-1974/Pekelis%20-%20Cybernetics%20A-Z%20-%20Mir%20-%201974.pdf">
+It's up to you, young men, not just to master this sophisticated technology but to design and build new, even more advanced machines, develop the science which governs them, dig into unknown strata of cybernetic knowledge.
+Many are the wonderful and interesting exploits that await you. But they'll need a lot of knowledge and skill. And to attain knowledge and skill one should study long and hard.
+I would like to remind you of the words of V. I. Lenin: "Study, study and study!"
+Wide and deep is their meaning: you should not only study, but should always be "on the level" of advanced knowledge, be abreast of the time, see far ahead of you.
+Only the competent are able to master science. If you want to rule over clever machines, to build electronic robots, to blaze new trails in cybernetics you should study the fundamentals of the science of cybernetics, should take hold of the treasures of knowledge collected for you by men of former generations, by your fathers and grandfathers.<br>
+ - V. PEKELIS, Cybernetics A-to-Z
+</blockquote>
+
+        </section>
+
+ <section>
+   The term cybernetics was first used by the Greeks as "κυβερνήτης (kybernḗtēs)" referring to the person who steers a ship, an early form of a closed control loop.<br><br>
+The metaphor held for centuries, dormant in navigation and mechanics, until Norbert Wiener formalized it in 1948. Cybernetics became the science of control and communication in animals and machines. It was not a narrow discipline by design. Wiener, Ashby, McCulloch and von Foerster were circling one large question: how does any system regulate itself against a world that constantly pushes back?
+The answers seeded most of modern engineering. Control theory gave us autopilots, power grids and industrial automation. Shannon's information theory grew from the same conversations. Neuroscience borrowed the feedback loop. The early internet was cybernetic in spirit, a self-correcting network built to route around damage.<br><br>
+By the time AI research consolidated around scaling and connectionism, cybernetics had been quietly absorbed into subfields that lost the thread between them. What remained was treated as historical background, not active framework.
+The consequences are visible. Modern deep learning is essentially an open loop. You train, you deploy. The model does not inhabit a world or receive feedback from one in any meaningful sense. Systems that are extraordinarily capable at pattern completion but brittle and ungrounded when reality pushes back. That is not a hardware problem or an architecture problem. It is what happens when you build without the right frame.
+<br><br>
+At Shunya Research we think the path runs back through this. Not as nostalgia but because the questions Wiener was asking are still the correct ones and almost nobody in mainstream AI is seriously asking them. We are releasing an open archive of cybernetics literature, Soviet and American traditions both, because we believe you cannot build what you do not understand. The science of steering has been waiting. It is time to pick it back up.
+
+<br><br><center>
+<a href="https://github.com/ShunyaResearch/TheCyberneticsArchive">The Cybernetics Archive</a>
+</center>
+</section>
+
+   
+
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="mailto:shunyaresearch.labs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.youtube.com/@shunyaresearch" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="../blogs.html" target="_blank" aria-label="Substack"><i class="fa-solid fa-book"></i></a>
+            </div>
+            <p>© 2026 Shunya Research. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-mode-icon');
+            body.classList.toggle('dark-mode');
+
+            const isDarkMode = body.classList.contains('dark-mode');
+            if (isDarkMode) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const icon = document.getElementById('dark-mode-icon');
+            const isDarkMode = body.classList.contains('dark-mode');
+
+            if (isDarkMode) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>
