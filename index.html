@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shunya Research — Intelligence that will eat the world</title>
+    <meta name="description" content="Intelligence that will eat the world.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="shunya-removebg-preview.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+    <script>
+        /* apply stored theme before first paint */
+        document.documentElement.classList.add('js');
+        try {
+            if (localStorage.getItem('shunya-theme') === 'light')
+                document.body.classList.remove('dark-mode');
+        } catch (e) {}
+    </script>
+
+    <div class="topbar">
+        <a class="brand" href="index.html">
+            SHUNYA RESEARCH
+        </a>
+        <nav>
+            <a href="index.html" aria-current="page">Home</a>
+            <a href="thesis.html">Thesis</a>
+            <a href="research.html">Research</a>
+            <a href="https://spikenets.substack.com" target="_blank" rel="noopener">Newsletter</a>
+            <a href="https://x.com/shunyaresearch" target="_blank" rel="noopener">Updates</a>
+        </nav>
+        <button class="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle theme">
+            <svg class="icon-sun" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+
+    <div class="hero">
+        <canvas class="voidfield" aria-hidden="true"></canvas>
+
+        <span class="reg reg--tl" aria-hidden="true">+</span>
+        <span class="reg reg--tr" aria-hidden="true">+</span>
+        <span class="reg reg--bl" aria-hidden="true">+</span>
+        <span class="reg reg--br" aria-hidden="true">+</span>
+
+        <div class="hero-mantra">
+            असतो मा सद्गमय · तमसो मा ज्योतिर्गमय · मृत्योर् मा अमृतं गमय
+            <small>Lead me from the unreal to the real · from darkness to light · from death to immortality — Bṛhadāraṇyaka Upaniṣad 1.3.28</small>
+        </div>
+
+        <div class="hero-body">
+            <h1>
+                Intelligence<br>
+                that will <span class="volt-word">eat</span><br>
+                the <span class="stroke">world.</span>
+            </h1>
+            <div class="hero-sub">
+                <p class="mission">
+                    An interdisciplinary research lab working on embodied intelligence, 
+                    robotics, world models, neuroscience, and philosophy of mind.
+                    Based in Bangalore, India.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+
+            <section id="about" class="reveal">
+                <div class="sec-head">
+                    <span class="sec-ghost" aria-hidden="true">०१</span>
+                    <div class="sec-id">
+                        <span class="t-label">01 — ABOUT</span>
+                    </div>
+                </div>
+                <h2>Experience,<br>not imitation.</h2>
+                <div class="about-layout">
+                    <div class="doctrine">
+                        <p>We are a student-led research lab based in India, dedicated to advancing the interdisciplinary study of embodied intelligence through integrated frameworks spanning robotics, world modeling, neuroscience, and philosophy of mind.</p>
+                        <p>We believe AI is fundamentally a problem about how minds work — drawing from neuroscience, cognitive psychology, and philosophy — rather than just statistical optimization. While this approach is different from mainstream AI research, we think it's the path to genuine intelligence.<br>
+
+                        Read our <a href="thesis.html">thesis</a>.</p>
+                    </div>
+                    <figure class="about-visual">
+                        <img src="events_small5-ezgif.com-remove-background.gif" alt="Event-based neural activity visualization" loading="lazy">
+                    </figure>
+                </div>
+            </section>
+
+            <section id="research" class="reveal">
+                <div class="sec-head">
+                    <span class="sec-ghost" aria-hidden="true">०२</span>
+                    <div class="sec-id">
+                        <span class="t-label">02 — RESEARCH</span>
+                    </div>
+                </div>
+
+                <div class="programs">
+
+                    <article class="program">
+                        <div class="program-id">
+                            <span class="deva-num" aria-hidden="true">००१</span>
+                        </div>
+                        <div class="program-body">
+                            <h3>Embodied Intelligence &amp; World Models</h3>
+                            <p>Embodied intelligence is studied through agents that learn predictive models of their environments from interaction. The emphasis is on acquiring compact world models from sensory streams such as vision, action, and proprioception, and using these models for planning and control without dense rewards or environment-specific tuning.</p>
+                            <p>Experiments are conducted primarily in simulated and game-based environments, with an emphasis on understanding which learned representations support generalization and long-horizon reasoning.</p>
+                        </div>
+                        <div class="program-status">
+                            <span class="status-chip status-chip--active">ONGOING</span>
+                            <span class="t-label">PROTOTYPES +<br>EXPLORATORY EXPERIMENTS</span>
+                        </div>
+                    </article>
+
+                    <article class="program">
+                        <div class="program-id">
+                            <span class="deva-num" aria-hidden="true">००२</span>
+                        </div>
+                        <div class="program-body">
+                            <h3>Neuromorphic Systems</h3>
+                            <p>We are currently experimenting with speeding up existing algorithms and architectures to eventually enable back-propagation-free on-chip training of neuromorphic algorithms.</p>
+                            <p>Experiments include using evolutionary strategies to train Spiking Neural Networks without surrogate back propagation, enabling forward-pass on-chip training on neuromorphic chips.</p>
+                            <p><a href="https://arxiv.org/abs/2605.30361v1" target="_blank" rel="noopener">Our SNN speedup experiments with evolutionary strategies at hyperscale are in pre-print</a> — 2.23× faster wall-clock time relative to naive ES.</p>
+                        </div>
+                        <div class="program-status">
+                            <span class="status-chip status-chip--active">ONGOING</span>
+                            <span class="t-label">PROTOTYPES +<br>EXPLORATORY EXPERIMENTS</span>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <section id="team" class="reveal">
+                <div class="sec-head">
+                    <span class="sec-ghost" aria-hidden="true">०३</span>
+                    <div class="sec-id">
+                        <span class="t-label">03 — TEAM</span>
+                    </div>
+                </div>
+
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-image-placeholder">
+                            <img src="Sachit.jpg" alt="Sachit Ramesha Gowda">
+                        </div>
+                        <h4>Sachit Ramesha Gowda</h4>
+                        <p class="team-role">Computer Vision / Neuroscience</p>
+                        <div class="team-socials">
+                            <a href="https://x.com/cyb3r_17" target="_blank" rel="noopener" aria-label="Sachit on X"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://sachitrame.sh" target="_blank" rel="noopener" aria-label="Sachit's website"><i class="fas fa-globe"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-image-placeholder">
+                            <img src="Dhruv.jpeg" alt="Dhruv Patankar">
+                        </div>
+                        <h4>Dhruv Patankar</h4>
+                        <p class="team-role">Reinforcement Learning / Neuromorphic Computing</p>
+                        <div class="team-socials">
+                            <a href="https://x.com/Milton_Sneedman" target="_blank" rel="noopener" aria-label="Dhruv on X"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://substack.com/@dhruv292077" target="_blank" rel="noopener" aria-label="Dhruv's Substack"><i class="fas fa-book"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="support" class="reveal">
+                <div class="sec-head">
+                    <span class="sec-ghost" aria-hidden="true">०४</span>
+                    <div class="sec-id">
+                        <span class="t-label">04 — SUPPORT</span>
+                    </div>
+                </div>
+                <h2>Support our research.</h2>
+                <p class="support-note">Independent research runs on your support! Contributions go directly into compute and hardware.</p>
+
+                <div class="crypto-address" data-addr="bc1qta2vkrwp42dlrfv5qfzf34tr59k902vd7xvkl7" role="button" tabindex="0" aria-label="Copy Bitcoin address">
+                    <i class="fab fa-bitcoin" aria-hidden="true"></i>
+                    <span><b>BTC:</b> bc1qta2vkrwp42dlrfv5qfzf34tr59k902vd7xvkl7</span>
+                    <span class="copy-hint">[ COPY ]</span>
+                </div>
+                <div class="crypto-address" data-addr="0x5B04Fc2787D6e9642257BE3B8d8847075eb055E8" role="button" tabindex="0" aria-label="Copy Ethereum address">
+                    <i class="fab fa-ethereum" aria-hidden="true"></i>
+                    <span><b>ETH:</b> 0x5B04Fc2787D6e9642257BE3B8d8847075eb055E8</span>
+                    <span class="copy-hint">[ COPY ]</span>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div class="gol-strip" aria-hidden="true">
+        <div class="container">
+            <canvas id="gol" width="760" height="150"></canvas>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-top">
+            <span class="footer-giant" aria-hidden="true">शून्य</span>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <span class="t-label">SHUNYA RESEARCH</span>
+                    <div class="social-links">
+                        <a href="mailto:shunyaresearch.labs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.youtube.com/@shunyaresearch" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://github.com/ShunyaResearch" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://spikenets.substack.com" target="_blank" rel="noopener" aria-label="Newsletter"><i class="fas fa-rss"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <span>© 2026 SHUNYA RESEARCH — ALL RIGHTS RESERVED</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
