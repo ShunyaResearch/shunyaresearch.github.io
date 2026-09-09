@@ -1,157 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Shunya Research — Thesis</title>
-    <meta name="description" content="Intelligence that will eat the world.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <title>Thesis &mdash; Shunya Research</title>
+    <meta name="description" content="Our bet: intelligence that learns by experience, not imitation." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="shunya-removebg-preview.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
-<body class="dark-mode">
-    <script>
-        document.documentElement.classList.add('js');
-        try {
-            if (localStorage.getItem('shunya-theme') === 'light')
-                document.body.classList.remove('dark-mode');
-        } catch (e) {}
-    </script>
 
-    <div class="topbar">
-        <a class="brand" href="index.html">
-            SHUNYA RESEARCH
-        </a>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="thesis.html" aria-current="page">Thesis</a>
-            <a href="research.html">Research</a>
-            <a href="https://spikenets.substack.com" target="_blank" rel="noopener">Newsletter</a>
-            <a href="https://x.com/shunyaresearch" target="_blank" rel="noopener">Updates</a>
-        </nav>
-        <button class="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle theme">
-            <svg class="icon-sun" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="4"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg class="icon-moon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-        </button>
-        <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-
-    <div class="hero hero--sub">
-        <canvas class="voidfield" aria-hidden="true"></canvas>
-
-        <span class="reg reg--tl" aria-hidden="true">+</span>
-        <span class="reg reg--tr" aria-hidden="true">+</span>
-        <span class="reg reg--bl" aria-hidden="true">+</span>
-        <span class="reg reg--br" aria-hidden="true">+</span>
-
-        <div class="hero-body">
-            <h1>Thesis<span class="volt-word">.</span></h1>
-        </div>
-    </div>
-
-    <main>
-        <div class="container">
-            <section>
-                <h2>Intelligence that will eat the world.</h2>
-                <h4>Our bet</h4>
-                <p>
-                    
-                    Shunya Research is an independent research lab based in Bangalore, India. We're working on embodied intelligence, physical AI and neuromorphic systems. We believe true generalization requires more than just text and images, it requires the agent to explore and experience the physical realm to build context based on pragmatics and not just semantics.
-<br>
-                    While scaling has delivered impressive results, the returns from LLM-scaling have not justified the scale of investments and data poured in. Terabytes of VRAM, billions in capital and almost all of humanity's knowledge and yet the AI that solves cancer is nowhere in sight. All of these point to something fundamental missing in our approach towards artificial general intelligence.
-
-                    <br>
-Our bet is on exploiting neuroscience based world models that learn through experience. We also believe by imitating biological architectures of the brain and sensori-motor systems we can make AI systems more sample and energy efficient. The field of neuromorphic computing and neuroscience is underexplored in this sense.
-                </p>
-                <h4>Current shortcomings</h4>
-                <p>
-                    
-                Academia used to be where unconventional ideas got a home. However, that isn't the case anymore. Publication counts and committee-driven funding made most institutions risk-averse, they'd rather fund something safe than back a question that takes a decade to answer. This obviously, isn't a shortcoming of individual researchers but a failure of the system as a whole.<br>
-                Non-LLM approaches to scaling intelligence have been met with scrutiny and almost zealotry levels of skepticism, treated less as a research direction and more as a distraction. However, pioneers of the field such as Yann LeCun, Richard Sutton and Jurgen Schmidhuber have consistently shared the view that text based scaling of current architectures will not generalise.<br><br>
-                A few problems we currently face are:
-                <ul>
-                    <li>No continual learning.</li>
-                    <li>Sample inefficient learning.</li>
-                    <li>Agents cannot reason about the consequences of their actions in physical spaces, i.e. no causal understanding.
-                    </li>
-                    <li>Energy inefficiency - The Human brain runs on about 20 watts.</li>
-               </ul>
-                
+<body>
+    <div id="maincontent" style="margin-top: 70px">
+        <div class="masthead">
+            <h2>Thesis</h2>
+            <p class="nav">
+                <a href="index.html">Home</a>
+                <a href="thesis.html">Thesis</a>
+                <a href="research.html">Research</a>
+                <a href="https://spikenets.substack.com">Newsletter</a>
+                <a href="https://x.com/shunyaresearch">Updates</a>
             </p>
-            <h4>Our solution</h4>
-            <p>
-                Our approach rests on three principles:<br>
-                <ol>
-                <li><b>World Modelling paired with RL:</b> Agents that learn through exploring their environments. When paired with RL, the agents learn reward driven behaviour and not just statistical patterns in the world/environment they're exploring.</li>
-               <li> <b>Neuromorphic systems:</b> Spiking neural networks and neuromorphic chips are known to be extremely energy efficient while being on-par with ANNs on similar tasks, their sparsity contributes to their low energy usage. We are currently exploring ways to exploit non backprop based solutions to enable on-chip learning of SNN models (check research tab).</li>
-             <li>   <b>Copy nature:</b> The smartest beings in the universe (that we know of) are humans. Our minds are incredibly sample efficient, can continually learn and our reasoning outclasses AI performance in terms energy efficiency. Our goal is to study biological designs such as that of the <i>Drosophila melanogaster</i> and <i>C. Elegans</i> to understand bio neural circuits and quite literally copy them.
-                </li></ol>
-            </p>
-              <h4>
-                Goals
-              </h4> 
-              <p>
-                Research is a tedious and rigorous process that takes a lot of time, despite that we aim to achieve the following by next year:
-                <ul>
-                    <li>Publish our first technical results on event-based vision and spiking neural networks.</li>
-                    <li>Open-source tooling built for our own research workflow, starting with formal mathematics.</li>
-                    <li>Test and report our attempts at on-chip learning for SNNs using evolution strategies.</li>
-                    <li>Explore sustainable continual learning methods for world models.</li>
-                </ul>
-                As for our long term goals as a lab:
-                <ul>
-               
-                    <li>Build embodied agents that are sample efficient and can continually learn with actual industry deployment.</li>
-                    <li>Establish Bangalore/India as a hub for frontier AI research.</li>
-                    <li>Demonstrate neuromorphic hardware-software co-design at a scale competitive with ANN baselines on real robotic tasks.</li>
-                    
-                </ul>
-              </p>
-              <h4>Conclusion</h4>
-              <p>
-                We're in an age where technology is touching every aspect of our lives, AI has proven to be useful in various fields, be it novel protein synthesis, efficient aerodynamic designs or superhuman levels of medical diagnosis. AI has the potential to usher in an actual utopia for the human race. However, we don't think today's dominant paradigm gets us there. Closing that gap is what Shunya is built to do. We're inspired by the likes of Bell Labs, Google Deepmind and Sakana AI in terms of our research approach. If this resonates, we want to hear from you, whether that's mentorship, funding, or compute.  
-
-            <br>
-            Ultimately, it's about building intelligence that will eat the world.
-              </p>
-            </section>
         </div>
-    </main>
+        <p><b>Intelligence that will eat the world.</b></p>
 
-    <footer>
-        <div class="footer-top">
-            <span class="footer-giant" aria-hidden="true">शून्य</span>
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <span class="t-label">SHUNYA RESEARCH</span>
-                    <div class="social-links">
-                        <a href="mailto:shunyaresearch.labs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                        <a href="https://www.youtube.com/@shunyaresearch" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="https://github.com/ShunyaResearch" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://spikenets.substack.com" target="_blank" rel="noopener" aria-label="Newsletter"><i class="fas fa-rss"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-legal">
-            <span>© 2026 SHUNYA RESEARCH — ALL RIGHTS RESERVED</span>
-        </div>
-    </footer>
+        <h3>Our bet</h3>
+        <p>
+            Shunya Research is an independent research lab based in
+            Bangalore, India. We work on embodied intelligence, physical
+            AI, and neuromorphic systems. We believe true generalization
+            requires more than text and images. It requires an agent to
+            explore and experience the physical realm, building context
+            out of pragmatics and not just semantics.
+        </p>
+        <p>
+            Scaling has delivered impressive results, but the returns from
+            LLM scaling have not justified the investment and data poured
+            in. Terabytes of VRAM, billions in capital, and almost all of
+            humanity's knowledge, and yet the AI that solves cancer is
+            nowhere in sight. All of this points to something fundamental
+            missing in our approach to artificial general intelligence.
+        </p>
+        <p>
+            Our bet is on neuroscience-based world models that learn
+            through experience. We also believe that by imitating the
+            biological architecture of the brain and of sensorimotor
+            systems, we can make AI systems far more sample- and
+            energy-efficient. Neuromorphic computing and neuroscience are
+            underexplored in this sense.
+        </p>
 
-    <script src="script.js"></script>
+        <h3>Current shortcomings</h3>
+        <p>
+            Academia used to be where unconventional ideas got a home.
+            That isn't the case anymore. Publication counts and
+            committee-driven funding made most institutions risk-averse;
+            they would rather fund something safe than back a question
+            that takes a decade to answer. This is not a shortcoming of
+            individual researchers but a failure of the system as a whole.
+        </p>
+        <p>
+            Non-LLM approaches to scaling intelligence have been met with
+            scrutiny and near-zealous skepticism, treated less as a
+            research direction and more as a distraction. Yet pioneers of
+            the field such as Yann LeCun, Richard Sutton, and Jürgen
+            Schmidhuber have consistently held that text-based scaling of
+            current architectures will not generalize.
+        </p>
+        <p>A few problems we currently face:</p>
+        <ul>
+            <li>No continual learning.</li>
+            <li>Sample-inefficient learning.</li>
+            <li>
+                Agents cannot reason about the consequences of their
+                actions in physical spaces, i.e. no causal understanding.
+            </li>
+            <li>
+                Energy inefficiency. The human brain runs on about 20
+                watts.
+            </li>
+        </ul>
+
+        <h3>Our solution</h3>
+        <p>Our approach rests on three principles.</p>
+        <ol>
+            <li>
+                <b>World modelling paired with RL.</b> Agents that learn
+                by exploring their environments. Paired with RL, they
+                learn reward-driven behaviour and not just statistical
+                patterns in the environment they are exploring.
+            </li>
+            <li>
+                <b>Neuromorphic systems.</b> Spiking neural networks and
+                neuromorphic chips are extremely energy efficient while
+                remaining on par with ANNs on similar tasks; their
+                sparsity is what buys the low energy usage. We are
+                exploring non-backprop solutions that enable on-chip
+                learning of SNN models. See
+                <a href="research.html">Research</a>.
+            </li>
+            <li>
+                <b>Copy nature.</b> The smartest beings in the universe
+                that we know of are humans. Our minds are incredibly
+                sample efficient, can continually learn, and outclass AI
+                on energy efficiency. Our goal is to study biological
+                designs such as those of <i>Drosophila melanogaster</i>
+                and <i>C. elegans</i> to understand bio-neural circuits
+                and quite literally copy them.
+            </li>
+        </ol>
+
+        <h3>Goals</h3>
+        <p>
+            Research is tedious and rigorous and takes a long time.
+            Despite that, we aim to achieve the following by next year:
+        </p>
+        <ul>
+            <li>
+                Publish our first technical results on event-based vision
+                and spiking neural networks.
+            </li>
+            <li>
+                Open-source tooling built for our own research workflow,
+                starting with formal mathematics.
+            </li>
+            <li>
+                Test and report our attempts at on-chip learning for SNNs
+                using evolution strategies.
+            </li>
+            <li>
+                Explore sustainable continual learning methods for world
+                models.
+            </li>
+        </ul>
+        <p>Longer term, as a lab:</p>
+        <ul>
+            <li>
+                Build embodied agents that are sample efficient, can
+                continually learn, and see actual industry deployment.
+            </li>
+            <li>
+                Establish Bangalore and India as a hub for frontier AI
+                research.
+            </li>
+            <li>
+                Demonstrate neuromorphic hardware-software co-design at a
+                scale competitive with ANN baselines on real robotic
+                tasks.
+            </li>
+        </ul>
+
+        <h3>Conclusion</h3>
+        <p>
+            We are in an age where technology touches every aspect of our
+            lives. AI has proven useful in many fields, be it novel
+            protein synthesis, efficient aerodynamic design, or
+            superhuman medical diagnosis. It has the potential to usher in
+            an actual utopia for the human race. We do not think today's
+            dominant paradigm gets us there. Closing that gap is what
+            Shunya is built to do.
+        </p>
+        <p>
+            We are inspired by Bell Labs, Google DeepMind, and Sakana AI
+            in how we approach research. If this resonates, we want to
+            hear from you, whether that is mentorship, funding, or
+            compute.
+        </p>
+        <p>
+            Ultimately, it is about building intelligence that will eat
+            the world.
+        </p>
+
+        <p>
+            <a href="mailto:shunyaresearch.labs@gmail.com">shunyaresearch.labs@gmail.com</a>
+        </p>
+
+        <p><small>
+                Shunya Research &copy; 2026
+            </small>
+        </p>
+    </div>
 </body>
+
 </html>
