@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Neural Prostheses &mdash; Shunya Research</title>
+    <meta name="description"
+        content="We built a camera-to-jump pipeline for the fruit fly escape reflex, wired directly from a connectome. It works, but it escapes late. The reason why is the most useful part." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../shunya-removebg-preview.png" />
+    <link rel="stylesheet" href="../style.css" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Neural Prostheses" />
+    <meta property="og:description"
+        content="We built a camera-to-jump pipeline for the fruit fly escape reflex, wired directly from a connectome. It works, but it escapes late. The reason why is the most useful part." />
+    <meta property="og:image" content="https://shunyaresearch.systems/blogs/fly-vision-restoration/media/og.jpg" />
+    <meta property="og:url" content="https://shunyaresearch.systems/blogs/fly-vision-restoration.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@shunyaresearch" />
+    <meta name="twitter:title" content="Neural Prostheses" />
+    <meta name="twitter:description"
+        content="We built a camera-to-jump pipeline for the fruit fly escape reflex, wired directly from a connectome. It works, but it escapes late. The reason why is the most useful part." />
+    <meta name="twitter:image" content="https://shunyaresearch.systems/blogs/fly-vision-restoration/media/og.jpg" />
+
+    <style>
+        /* this post only: figures, video loops, tables */
+        figure {
+            margin: 1.6em 0;
+        }
+
+        figure img,
+        figure video {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        figure video {
+            border: 1px solid var(--rule);
+        }
+
+        figure video.bare {
+            border: none;
+        }
+
+        /* wider than the text column on large screens, full width on phones */
+        figure.wide {
+            width: min(1000px, calc(100vw - 20px));
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+
+        figure.wide figcaption {
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        figcaption {
+            margin-top: 0.5em;
+            color: var(--fg-dim);
+            font-size: 0.8rem;
+            text-align: left;
+            hyphens: none;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1.2em 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            min-width: 100%;
+            font-size: 0.8rem;
+            text-align: left;
+            hyphens: none;
+        }
+
+        th,
+        td {
+            padding: 0.35em 0.8em 0.35em 0;
+            border-bottom: 1px solid var(--rule);
+            white-space: nowrap;
+        }
+
+        th {
+            color: var(--fg-dim);
+            font-weight: normal;
+        }
+
+        ul.refs {
+            font-size: 0.8rem;
+            text-align: left;
+            hyphens: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="maincontent" style="margin-top: 70px">
+        <div class="masthead">
+            <h2>Neural Prostheses</h2>
+            <p class="nav">
+                <a href="../index.html">Home</a>
+                <a href="../thesis.html">Thesis</a>
+                <a href="../research.html">Research</a>
+                <a href="https://spikenets.substack.com">Newsletter</a>
+                <a href="https://x.com/shunyaresearch">Updates</a>
+            </p>
+        </div>
+        <p>
+            Recently, Google Research, HHMI Janelia and other collaborators in Cambridge, U.K. released the male CNS connectome of Drosophila melanogaster (Fruit Fly). While people have built “impressive” looking demos, we at Shunya have been looking into connectomics for a good part of this year. We’re currently working on various prototypes of applications using connectomics that could one day be useful in medicine and neuroscience. However, all big things come from small beginnings. In this blogpost, we describe a proof-of-concept of how connectomics can aid in constructing neural prostheses.
+        </p>
+
+        <h3>Experiment setting:</h3>
+        <p>
+            Consider a sighted fly. The vision pipeline works somewhat like the illustration shown below:
+        </p>
+        <figure class="wide">
+            <video class="bare" autoplay muted loop playsinline preload="metadata" poster="fly-vision-restoration/media/sighted.jpg" aria-label="In a sighted fly, Photoreceptors feed the lamina, medulla and T4/T5 cells, which feed the LPLC2 cells, which feed the giant fiber. Only a sample of each cell type is shown. Timing is for illustration only.">
+                <source src="fly-vision-restoration/media/sighted.mp4" type="video/mp4" />
+            </video>
+            <figcaption>In a sighted fly, Photoreceptors feed the lamina, medulla and T4/T5 cells, which feed the LPLC2 cells, which feed the giant fiber. Only a sample of each cell type is shown. Timing is for illustration only.</figcaption>
+        </figure>
+        <p>
+            Now suppose the early part of this pathway, from the photoreceptors up to the T4/T5 motion cells, is missing, for example because of disease or damaged eyes. The rest of the circuit, from the LPLC2 cells onward, is intact.
+        </p>
+        <p>
+            A neural prosthesis restores function by feeding signals into the intact part of the circuit. Nirenberg and Pandarinath (2012) built a retinal prosthesis with two parts:
+        </p>
+        <ul>
+            <li>Encoder: a model, fitted to recordings, that converts images into spike patterns like those of a normal retinal ganglion cell.</li>
+            <li>Transducer: channelrhodopsin-2 (ChR2), a light-sensitive protein expressed in ganglion cells, driven by light, so the encoder's output can be written into the cells.</li>
+        </ul>
+        <p>
+            In blind mice, this setup produced firing patterns close to those of a normal retina.
+        </p>
+        <p>
+            The fruit fly connectome gives us the exact wiring of the intact circuit, so we use the same idea to simulate one of the simplest behaviors a fly's vision drives: the looming escape, where the fly jumps away from an approaching object.
+        </p>
+        <p>
+            Everything is simulated and the flybody is borrowed from (Wang-Chen et al., 2024). Our encoder is a camera plus a hand-built motion detector that writes straight into the LPLC2 cells (a real implant would need a transducer for this step).
+        </p>
+
+        <h3>Why the fly escapes</h3>
+        <p>
+            When something looms at a fruit fly, it jumps and the circuit behind that decision is well understood. Only a few dozen neurons sit between the eye's motion detectors and the jump muscle. The behaviour has a single, measurable output whose timing has been recorded in real flies (von Reyn et al., 2014, 2017; Ache et al., 2019). Its looming detectors, a cell type called LPLC2, have a known computational structure (Klapoetke et al., 2017). And switching on LPLC2 alone makes real flies jump (Wu et al., 2016), which makes it a realistic place for a prosthesis to write its signal in.
+        </p>
+        <p>
+            The new architecture looks like this:
+        </p>
+        <figure class="wide">
+            <video class="bare" autoplay muted loop playsinline preload="metadata" poster="fly-vision-restoration/media/prosthetic.jpg" aria-label="The prosthetic version: a camera and an encoder replace the early visual pathway (photoreceptors to T4/T5) and drive the LPLC2 cells directly.">
+                <source src="fly-vision-restoration/media/prosthetic.mp4" type="video/mp4" />
+            </video>
+            <figcaption>The prosthetic version: a camera and an encoder replace the early visual pathway (photoreceptors to T4/T5) and drive the LPLC2 cells directly.</figcaption>
+        </figure>
+        <p>
+            The entire pipeline is illustrated below:
+        </p>
+        <figure class="wide">
+            <img src="fly-vision-restoration/media/pipeline.png" alt="Top: the fly&#x27;s own escape pathway. Bottom: ours. The camera, hex eye and encoder replace photoreceptors through T4/T5 and write into LPLC2; from LPLC2 on, every connection comes from the connectome." />
+            <figcaption>Top: the fly's own escape pathway. Bottom: ours. The camera, hex eye and encoder replace photoreceptors through T4/T5 and write into LPLC2; from LPLC2 on, every connection comes from the connectome.</figcaption>
+        </figure>
+
+        <h3>Building the prosthesis:</h3>
+        <p>
+            In a sighted fly, light passes from the photoreceptors through the layers of the optic lobe to the T4 and T5 cells which detect motion. They feed the LPLC2 cells which then converge on the fly's escape command neuron (the giant fiber). A single giant fiber spike is enough to fire the jump.
+        </p>
+        <p>
+            Our prosthesis replaces the first half of the above mentioned pathway. A camera image is resampled onto a model of the fly's compound eye with 721 facets that are updated at 200 Hz. An encoder then computes the motion signals T4 and T5 would have sent. It is a classic correlator, which compares each facet's recent past with its neighbour's present, plus a contrast normaliser so it responds to edges rather than total brightness. It is a hand-built stand-in for what those cells compute and not a biophysical model of them.
+        </p>
+        <p>
+            The encoder is rather simple, for each pair of neighbouring facets the encoder has a leaky memory of what the first one saw over the last ~50 ms and multiplies it by what the second one sees now, if an edge passed the first facet a moment ago and is at the second one now, the product tends to be large and when you subtract the same product in the opposite direction you’re left with values that fire only for motion in one direction, this leads downstream into the 4 sub-populations of the T4 and T5 cell groups that correspond to the 4 directions.
+        </p>
+        <figure class="wide">
+            <img src="fly-vision-restoration/media/encoder.png" alt="One motion detector. Each facet&#x27;s signal is adjusted for local contrast, reduced to its changes and split into brightening and darkening. A delayed copy of facet A is multiplied by facet B now and vice versa. The difference is the motion signal for one direction." />
+            <figcaption>One motion detector. Each facet's signal is adjusted for local contrast, reduced to its changes and split into brightening and darkening. A delayed copy of facet A is multiplied by facet B now and vice versa. The difference is the motion signal for one direction.</figcaption>
+        </figure>
+        <p>
+            Everything after the encoder comes from the male central nervous system connectome (Janelia, Google Research, MRC LMB and Cambridge). We took all 82 right-side LPLC2 cells that view our model eye, every synapse they receive from T4 and T5, their inhibitory partner cells, the ~2000 synapses that lead into the giant fiber and the giant fiber's connections to the jump and flight motor neurons. The giant fiber and motor neurons are LIF neurons that follow a published whole-brain fly model (Shiu et al., 2024), the LPLC2 cells are simpler graded units and the body is NeuroMechFly as mentioned above (Wang-Chen et al., 2024), a physics simulation of a fruit fly.
+        </p>
+        <p>
+            Each LPLC2 cell gets motion inputs arranged in a cross, with each arm tuned to motion outward from the cell's centre. An object growing in front of the fly drives all four arms at once; something sliding past drives at most one. Across cells the arms are super consistent, 81% of cells show all four.
+        </p>
+        <figure class="wide">
+            <img src="fly-vision-restoration/media/weight_fields.png" alt="The four-armed cross, read from the connectome. T4/T5 synapses per lobula-plate column for four LPLC2 cells, coloured by subtype (a red, b blue, c green, d orange); dot size is the synapse count. Each arm prefers motion outward from the cell&amp;rsquo;s centre." />
+            <figcaption>The four-armed cross, read from the connectome. T4/T5 synapses per lobula-plate column for four LPLC2 cells, coloured by subtype (a red, b blue, c green, d orange); dot size is the synapse count. Each arm prefers motion outward from the cell&rsquo;s centre.</figcaption>
+        </figure>
+
+        <h3>Tests:</h3>
+        <p>
+            To test if our model works by defining what a pass criteria is, we tested the setup on novel stimuli that we hadn’t used while building or tuning the model. Every looming object ended up firing the giant fiber. However, sideways motion, dimming, receding objects, a blank scene and the view while walking forward never did.
+        </p>
+        <p>
+            The last one is an important test since walking forward makes the whole visual field expand, which looks a lot like looming, however our model rejects it on its own because whole-field expansion drives LPLC2 three to five times less than a local loom, hence validating our pipeline by mirroring real fly behaviour.
+        </p>
+        <figure>
+            <img src="fly-vision-restoration/media/gate2.png" alt="Approaching objects (green) all fire the giant fiber; every control (grey) stays near zero and never does." />
+            <figcaption>Approaching objects (green) all fire the giant fiber; every control (grey) stays near zero and never does.</figcaption>
+        </figure>
+
+        <h3>Results:</h3>
+        <p>
+            Downstream, the timing matches biology. A giant fiber spike fires the jump motor neuron 0.2 ms later and the simulated body leaves the ground 5 ms after that which matches literature (Zumstein et al., 2004).
+        </p>
+        <figure>
+            <video class="bare" autoplay muted loop playsinline preload="metadata" poster="fly-vision-restoration/media/jump.jpg" aria-label="The jump, 40&amp;times; slow motion. The wings don&amp;rsquo;t flap and there is no air, so after take-off the body tips back.">
+                <source src="fly-vision-restoration/media/jump.mp4" type="video/mp4" />
+            </video>
+            <figcaption>The jump, 40&times; slow motion. The wings don&rsquo;t flap and there is no air, so after take-off the body tips back.</figcaption>
+        </figure>
+        <p>
+            To further push the limits of our setup we run it in realtime on a laptop, with a webcam as a stand-in for the eye. In a dark room lit by a single lamp, an arm moving towards the camera reliably makes the simulated fly jump.
+        </p>
+        <figure>
+            <video autoplay muted loop playsinline preload="metadata" poster="fly-vision-restoration/media/live.jpg" aria-label="The webcam demo in action, filmed on a phone">
+                <source src="fly-vision-restoration/media/live.mp4" type="video/mp4" />
+            </video>
+            <figcaption>The webcam demo in action, filmed on a phone</figcaption>
+        </figure>
+
+        <h3>Limitations:</h3>
+        <p>
+            Late escape is a major limitation of our setup. A real fly's looming detectors respond most strongly when an approaching object fills about 42° of its view. Ours first fire the giant fiber when the object is 61–73° wide and for approaches faster than about 20 mm/s they don't fire it at all. Real flies escape across the whole range of speeds.
+        </p>
+        <p>
+            To investigate where time is lost we trace the signal through time and find that the connectome wiring is not the problem, the inhibitory cells and the connections between LPLC2 cells barely matter before the giant fiber fires. The delay stems from how the encoder was engineered; it doesn’t respond to small objects leading to the first LPLC2 cell to fire once the object is ~48° wide regardless of speed. Another suspect is an input to the giant fiber that we didn’t model, the LPLC2 provides about 14% of the giant fiber’s input; another looming pathway, the LC4 provides 16% and carries the speed signal that real flies rely on for fast approaches.
+        </p>
+        <p>
+            Our giant fiber also fires in bursts, usually two or three spikes where a real fly's fires one. It has no inhibition acting on it, so nothing stops it firing again while LPLC2 keeps driving it. In the real fly, most of the giant fiber's inhibitory inputs are driven by parts of the brain we didn't consider. When we added the few that LPLC2 does drive, they barely fired.
+        </p>
+        <figure>
+            <img src="fly-vision-restoration/media/timing_angle.png" alt="How large the ball looks when the giant fiber fires, against approach speed (r/v: smaller is faster). Lines: real flies (von Reyn et al., 2017; Ache et al., 2019). Blue: our fly. Crosses: approaches that never triggered an escape." />
+            <figcaption>How large the ball looks when the giant fiber fires, against approach speed (r/v: smaller is faster). Lines: real flies (von Reyn et al., 2017; Ache et al., 2019). Blue: our fly. Crosses: approaches that never triggered an escape.</figcaption>
+        </figure>
+        <figure>
+            <img src="fly-vision-restoration/media/size_tuning_a.png" alt="The model&amp;rsquo;s looming detectors respond to larger objects than a real fly&amp;rsquo;s. Their population response against ball size, at three speeds (colours), against the real fly (white)." />
+            <figcaption>The model&rsquo;s looming detectors respond to larger objects than a real fly&rsquo;s. Their population response against ball size, at three speeds (colours), against the real fly (white).</figcaption>
+        </figure>
+
+        <h3>Observations:</h3>
+        <p>
+            A few observations and lessons from our experiments:
+        </p>
+        <ul>
+            <li>Connectomes could potentially open up ways to design and test neural prosthesis before actual testing.</li>
+            <li>There are many factors to consider when simulating a neural circuit, e.g. our decision to leave out LC4 made the fly response time towards fast objects slower.</li>
+            <li>Components of the connectome out of the considered neural circuits impact the behaviour of said circuits as seen in the LPLC2 case.</li>
+            <li>Sensors that model biological sensory organs are important. Mapped at its true ~50° view, the webcam covered only 59 of the eye's 721 facets and the fly never escaped. A prosthesis is limited by its camera's field of view and frame rate before the neurons get involved.</li>
+            <li>Complexity of neuron modelling has downstream behaviour. Treating the giant fiber as a single point neuron rather than a branched cell is one reason it fires in bursts and reacts to too little input. Simplifications that look harmless show up in the behaviour.</li>
+            <li>Verifying the outputs of such systems will need actual behavioural data. Our system works as intended however is slower than the response system of a real fly.</li>
+        </ul>
+
+        <h3>What next:</h3>
+        <p>
+            The obvious next step is LC4, the missing looming pathway into the giant fiber, which should fix the fast approaches. Beyond that, we want to make the looming detectors spike, so their only free number is replaced by synapse counts and to pair them with an event camera. Its on/off events map naturally onto T4 and T5, which would give a fully spiking prosthesis from camera to jump. Further out, synapse-level connectomes now exist for about a cubic millimetre of mouse and human cortex (MICrONS Consortium, 2025; Shapson-Coe et al., 2024).
+        </p>
+
+        <h3>References</h3>
+        <ul class="refs">
+            <li>Ache, J. M. et al. (2019). Neural basis for looming size and velocity encoding in the <i>Drosophila</i> giant fiber escape pathway. <i>Current Biology</i> 29, 1073&ndash;1081.</li>
+            <li>Janelia FlyEM, Google Research, MRC LMB and University of Cambridge (2026). Sexual dimorphism in the complete connectome of the <i>Drosophila</i> male central nervous system. <i>Cell</i>. <a href="https://doi.org/10.1016/j.cell.2026.08.015">doi:10.1016/j.cell.2026.08.015</a>; data at <a href="https://male-cns.janelia.org">male-cns.janelia.org</a>.</li>
+            <li>Klapoetke, N. C. et al. (2017). Ultra-selective looming detection from radial motion opponency. <i>Nature</i> 551, 237&ndash;241.</li>
+            <li>MICrONS Consortium (2025). Functional connectomics spanning multiple areas of mouse visual cortex. <i>Nature</i> 640, 435&ndash;447.</li>
+            <li>Nirenberg, S. and Pandarinath, C. (2012). Retinal prosthetic strategy with the capacity to restore normal vision. <i>PNAS</i> 109, 15012&ndash;15017.</li>
+            <li>Shapson-Coe, A. et al. (2024). A petavoxel fragment of human cerebral cortex reconstructed at nanoscale resolution. <i>Science</i> 384, eadk4858.</li>
+            <li>Shiu, P. K. et al. (2024). A <i>Drosophila</i> computational brain model reveals sensorimotor processing. <i>Nature</i> 634, 210&ndash;219.</li>
+            <li>von Reyn, C. R. et al. (2014). A spike-timing mechanism for action selection. <i>Nature Neuroscience</i> 17, 962&ndash;970.</li>
+            <li>von Reyn, C. R. et al. (2017). Feature integration drives probabilistic behavior in the <i>Drosophila</i> escape response. <i>Neuron</i> 94, 1190&ndash;1204.</li>
+            <li>Wang-Chen, S. et al. (2024). NeuroMechFly v2: simulating embodied sensorimotor control in adult <i>Drosophila</i>. <i>Nature Methods</i> 21, 2353&ndash;2362.</li>
+            <li>Wu, M. et al. (2016). Visual projection neurons in the <i>Drosophila</i> lobula link feature detection to distinct behavioral programs. <i>eLife</i> 5, e21022.</li>
+            <li>Zumstein, N. et al. (2004). Distance and force production during jumping in wild-type and mutant <i>Drosophila melanogaster</i>. <i>Journal of Experimental Biology</i> 207, 3515&ndash;3522.</li>
+        </ul>
+
+        <p>
+            <a href="mailto:shunyaresearch.labs@gmail.com">shunyaresearch.labs@gmail.com</a>
+        </p>
+
+        <p><small>
+                Shunya Research &copy; 2026
+            </small>
+        </p>
+    </div>
+</body>
+
+</html>

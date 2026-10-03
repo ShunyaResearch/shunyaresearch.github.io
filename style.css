@@ -18,7 +18,7 @@
 body {
     padding: 0 10px;
     margin: 50px auto;
-    max-width: 650px;
+    max-width: 740px;       /* 720px of content + the 10px side padding */
     background-color: var(--bg);
     color: var(--fg);
     font-family:
@@ -33,7 +33,7 @@ body {
 }
 
 #maincontent {
-    max-width: 42em;
+    max-width: 720px;
     margin: 0 auto;
 }
 
